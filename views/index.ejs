@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8">
+  <title>Flightfox flights listing</title>
+
+  <!-- Le styles -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+  <style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+  </style>
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- Le fav and touch icons -->
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">Flightfox Search</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <!--<li class="home"><a href="/">Home</a></li>-->
+
+        </ul>
+
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+    <div class="hero-unit">
+        <h3>Ever wanted to search FlightFox?</h3>
+        <p>Hundreds of pages of great value flights to interesting destinations, but pretty tedius to search, right?<br />
+        Not any more.</p>
+    </div>
+
+
+    <div class="input-prepend">
+        <span class="add-on">From</span><input class="span2" id="fromSearch" size="16" type="text" placeholder="Origin">
+    </div>
+    <div class="input-prepend">
+        <span class="add-on">To</span><input class="span2" id="toSearch" size="16" type="text" placeholder="Destination">
+    </div>
+
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th></th>
+            <th><a href="#">From</a></th>
+            <th><a href="#">Departs</a></th>
+            <th><a href="#">To</a></th>
+            <th><a href="#">Returns</a></th>
+            <th><a href="#">Price</a></th>
+            <th><a href="#">Link</a></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% for (var i=0; i<flights.length; i++){ %>
+        <%  var f = flights[i]; %>
+
+        <tr>
+            <td>
+                <%= i+1 %>
+
+            </td>
+            <td class="from">
+                <strong><%= f.from.place %></strong>
+
+            </td>
+            <td>
+                <i><%= f.from.date %></i>
+            </td>
+            <td class="to">
+                <strong><%= f.to.place %></strong>
+            </td>
+            <td>
+                <i><%= f.to.date %></i>
+            </td>
+            <td>
+                <%= f.price %>
+            </td>
+            <td>
+                <a href="<%= f.link %>">To flight </a>
+            </td>
+
+        </tr>
+        <% } %>
+
+        </tbody>
+    </table>
+
+
+
+  <hr>
+
+  <footer>
+  </footer>
+</div> <!-- /container -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/javascripts/jquery.tablesorter.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("table").tablesorter();
+    $('#fromSearch').on('keyup', function(){
+        var v = $(this).val();
+        if (v==="" || !v){
+            $('tr').show();
+            return;
+        }
+
+        $('tr').each(function(){
+            var t = $(this).find('td.from').text();
+            if (t.toLowerCase().indexOf(v.toLowerCase())==-1){
+                $(this).hide();
+            }
+        });
+    });
+
+    $('#toSearch').on('keyup', function(){
+        var v = $(this).val();
+        if (v==="" || !v){
+            $('tr').show();
+            return;
+        }
+
+        $('tr').each(function(){
+            var t = $(this).find('td.to').text();
+            if (t.toLowerCase().indexOf(v.toLowerCase())==-1){
+                $(this).hide();
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>
+
+

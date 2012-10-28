@@ -1,0 +1,23 @@
+@import "bootstrap/bootstrap.less";
+
+/* Set our base colors */
+@grayDarker:            darken(@grayDark, 6.5%);
+@grayDark:              darken(@gray, 13.5%);
+@gray:                  #555;
+@grayLight:             desaturate(lighten(@gray, 26.5%), 50%); // TODO: Make this have a meaningful relationship to @gray
+@grayLighter:           #eee;
+@white:                 #fff;
+
+.input-prepend {
+  display: inline;
+  margin: 10px 20px
+}
+
+a.brand, a.brand:link, a.brand:visited {
+  color: #fff;
+}
+
+.hero-unit {
+  padding: 25px;
+  margin-bottom: 18px;
+}
