@@ -14,7 +14,7 @@ var flightStore = [];
 var app = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || 80);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon());
@@ -38,14 +38,12 @@ app.get('/', function(req, res){
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
+  /*
+   Scrape once, then do so every hour
+   */
+  setInterval(buildScrapedDb, 3600000);
+  buildScrapedDb();
 });
-
-
-/*
- Scrape once, then do so every hour
- */
-setInterval(buildScrapedDb, 3600000);
-buildScrapedDb();
 
 
 

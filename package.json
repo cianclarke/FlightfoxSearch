@@ -1,14 +1,16 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
+  "name": "flightfoxsearch",
+  "subdomain": "flightfoxsearch",
   "scripts": {
-    "start": "node app"
+    "start": "app.js"
+  },
+  "version": "0.0.1-3",
+  "engines": {
+    "node": "0.8.x"
   },
   "dependencies": {
-    "express": "3.0.0rc4",
-    "ejs": "*",
-    "less-middleware": "*",
-    "jsdom" : "*"
+    "less-middleware": "0.1.x",
+    "express": ">= 3.0",
+    "jsdom": "0.2.x"
   }
 }
