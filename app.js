@@ -41,8 +41,8 @@ http.createServer(app).listen(app.get('port'), function(){
   /*
    Scrape once, then do so every hour
    */
-//  setInterval(buildScrapedDb, 3600000);
-//  buildScrapedDb();
+  setInterval(buildScrapedDb, 3600000);
+  buildScrapedDb();
 });
 
 
